@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --scroll-progress: 0%; }
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0d0d1a; }
+::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 99px; }
+
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  width: var(--scroll-progress);
+  background: linear-gradient(90deg, #00d4ff, #f59e0b);
+  z-index: 9999; transition: width 0.1s linear;
+}
+
+.grid-bg {
+  background-image: linear-gradient(rgba(0,212,255,0.05) 1px,transparent 1px), linear-gradient(90deg,rgba(0,212,255,0.05) 1px,transparent 1px);
+  background-size: 60px 60px;
+}
+
+.reveal { opacity:0; transform:translateY(28px); transition:opacity 0.65s ease,transform 0.65s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+.tech-tag {
+  font-family:'JetBrains Mono',monospace; font-size:0.7rem;
+  padding:2px 8px; border-radius:4px;
+  background:rgba(0,212,255,0.1); border:1px solid rgba(0,212,255,0.25); color:#00d4ff;
+  white-space:nowrap;
+}
+
+.project-card { transition:transform 0.3s ease,box-shadow 0.3s ease; }
+.project-card:hover { transform:translateY(-5px); }
+
+.typing-cursor::after { content:'|'; animation:blink 1s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+.fade-up { animation:fadeUp 0.6s ease-out forwards; }
+.loader-bar { animation:loaderGrow 1.4s ease-in-out forwards; }
+@keyframes loaderGrow { 0%{width:0%;} 70%{width:85%;} 100%{width:100%;} }
